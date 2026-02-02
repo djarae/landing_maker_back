@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LandingMakerBack")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+636fc489c4df8b7d79020486a244bfda57a4898f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb424ce46855c3e668b4bf85c55c01cf1bc55242")]
 [assembly: System.Reflection.AssemblyProductAttribute("LandingMakerBack")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LandingMakerBack")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

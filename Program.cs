@@ -73,12 +73,16 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection(); // Deshabilitado para evitar problemas en localhost HTTP
 
 // Servir archivos estáticos (para imágenes subidas y assets del backoffice)
 app.UseStaticFiles();
 
-app.UseCors("AllowVueFrontend");
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true) // allow any origin
+    .AllowCredentials());
 
 app.UseAuthentication();
 app.UseAuthorization();
