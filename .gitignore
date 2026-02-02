@@ -1,0 +1,39 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/ 
+*.ncb
+*.sdf
+*.opensdf
+*.pdb
+*.ilk
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# NuGet
+*.nupkg
+**/packages/*
+
+# Environment
+.env
+appsettings.local.json
+
+# User files
+*.DotSettings.user
+
+# JetBrains Rider
+.idea/
+
+# Uploads
+wwwroot/uploads/*
+!wwwroot/uploads/.gitkeep

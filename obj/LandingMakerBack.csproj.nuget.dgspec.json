@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nidok\\OneDrive\\Documentos\\REPOSITORIOS\\landing_maker\\landing_maker_back\\LandingMakerBack\\LandingMakerBack\\LandingMakerBack.csproj": {}
+    "C:\\Users\\nidok\\OneDrive\\Documentos\\REPOSITORIOS\\landing_maker\\landing_maker_back\\LandingMakerBack.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nidok\\OneDrive\\Documentos\\REPOSITORIOS\\landing_maker\\landing_maker_back\\LandingMakerBack\\LandingMakerBack\\LandingMakerBack.csproj": {
+    "C:\\Users\\nidok\\OneDrive\\Documentos\\REPOSITORIOS\\landing_maker\\landing_maker_back\\LandingMakerBack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nidok\\OneDrive\\Documentos\\REPOSITORIOS\\landing_maker\\landing_maker_back\\LandingMakerBack\\LandingMakerBack\\LandingMakerBack.csproj",
+        "projectUniqueName": "C:\\Users\\nidok\\OneDrive\\Documentos\\REPOSITORIOS\\landing_maker\\landing_maker_back\\LandingMakerBack.csproj",
         "projectName": "LandingMakerBack",
-        "projectPath": "C:\\Users\\nidok\\OneDrive\\Documentos\\REPOSITORIOS\\landing_maker\\landing_maker_back\\LandingMakerBack\\LandingMakerBack\\LandingMakerBack.csproj",
+        "projectPath": "C:\\Users\\nidok\\OneDrive\\Documentos\\REPOSITORIOS\\landing_maker\\landing_maker_back\\LandingMakerBack.csproj",
         "packagesPath": "C:\\Users\\nidok\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nidok\\OneDrive\\Documentos\\REPOSITORIOS\\landing_maker\\landing_maker_back\\LandingMakerBack\\LandingMakerBack\\obj\\",
+        "outputPath": "C:\\Users\\nidok\\OneDrive\\Documentos\\REPOSITORIOS\\landing_maker\\landing_maker_back\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,9 +50,27 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[10.0.0, )"
             }
           },
           "imports": [

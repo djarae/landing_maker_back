@@ -1,0 +1,52 @@
+@page
+@model LandingMakerBack.Pages.IndexModel
+@{
+    ViewData["Title"] = "Landing Maker - Backoffice";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎯 Landing Maker</h1>
+            <p>Crea landings simples y bonitas</p>
+        </header>
+        
+        <main class="main-content">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <div class="welcome-box">
+                    <h2>¡Hola, @User.Identity.Name!</h2>
+                    <div class="action-buttons">
+                        <a href="/Landings" class="btn btn-primary">Mis Landings</a>
+                        <a href="/Landings/Create" class="btn btn-success">Crear Nueva Landing</a>
+                        <a href="/Account/Logout" class="btn btn-secondary">Cerrar Sesión</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="auth-box">
+                    <h2>Bienvenido</h2>
+                    <p>Inicia sesión o regístrate para comenzar a crear tus landings.</p>
+                    <div class="action-buttons">
+                        <a href="/Account/Login" class="btn btn-primary">Iniciar Sesión</a>
+                        <a href="/Account/Register" class="btn btn-success">Registrarse</a>
+                    </div>
+                </div>
+            }
+        </main>
+        
+        <footer class="footer">
+            <p>&copy; 2026 Landing Maker - MVP v1</p>
+        </footer>
+    </div>
+</body>
+</html>

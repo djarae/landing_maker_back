@@ -1,0 +1,69 @@
+@page
+@model LandingMakerBack.Pages.Landings.IndexModel
+@{
+    ViewData["Title"] = "Mis Landings";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Landing Maker</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/landings.css" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📋 Mis Landings</h1>
+            <a href="/" class="back-link">← Volver al inicio</a>
+        </header>
+        
+        <main class="main-content landings-page">
+            <div class="landings-header">
+                <a href="/Landings/Create" class="btn btn-success">+ Nueva Landing</a>
+            </div>
+            
+            @if (Model.Landings?.Count > 0)
+            {
+                <div class="landings-grid">
+                    @foreach (var landing in Model.Landings)
+                    {
+                        <div class="landing-card">
+                            <div class="landing-card-header">
+                                <span class="preset-badge @landing.PresetType.ToString().ToLower()">
+                                    @(landing.PresetType == LandingMakerBack.Models.Enums.PresetType.MobileApp ? "📱 Mobile App" : "🏪 Pyme")
+                                </span>
+                                <span class="status-badge @(landing.IsPublished ? "published" : "draft")">
+                                    @(landing.IsPublished ? "Publicada" : "Borrador")
+                                </span>
+                            </div>
+                            <h3>@landing.Name</h3>
+                            <p class="style-info">Estilo: @landing.StyleType</p>
+                            <p class="date-info">Creada: @landing.CreatedAt.ToString("dd/MM/yyyy")</p>
+                            <div class="landing-card-actions">
+                                <a href="/Landings/Edit/@landing.Id" class="btn btn-primary btn-sm">Editar</a>
+                                <a href="http://localhost:5173/?id=@landing.Id" target="_blank" class="btn btn-secondary btn-sm">Ver</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="empty-state">
+                    <div class="empty-icon">🎨</div>
+                    <h2>No tienes landings aún</h2>
+                    <p>Crea tu primera landing para comenzar</p>
+                    <a href="/Landings/Create" class="btn btn-success">Crear mi primera Landing</a>
+                </div>
+            }
+        </main>
+        
+        <footer class="footer">
+            <p>&copy; 2026 Landing Maker - MVP v1</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+@page
+@model LandingMakerBack.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Landing Maker</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔐 Iniciar Sesión</h1>
+            <a href="/" class="back-link">← Volver al inicio</a>
+        </header>
+        
+        <main class="main-content">
+            <form method="post" class="form-auth">
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="alert alert-error">
+                        @Model.ErrorMessage
+                    </div>
+                }
+                
+                <div class="form-group">
+                    <label for="Email">Correo electrónico</label>
+                    <input type="email" id="Email" asp-for="Input.Email" required class="form-control" />
+                </div>
+                
+                <div class="form-group">
+                    <label for="Password">Contraseña</label>
+                    <input type="password" id="Password" asp-for="Input.Password" required class="form-control" />
+                </div>
+                
+                <div class="form-group checkbox">
+                    <label>
+                        <input type="checkbox" asp-for="Input.RememberMe" />
+                        Recordarme
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                
+                <p class="form-footer">
+                    ¿No tienes cuenta? <a href="/Account/Register">Regístrate aquí</a>
+                </p>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

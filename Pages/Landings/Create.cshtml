@@ -1,0 +1,159 @@
+@page
+@model LandingMakerBack.Pages.Landings.CreateModel
+@{
+    ViewData["Title"] = "Crear Nueva Landing";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Landing Maker</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/create.css" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>✨ Crear Nueva Landing</h1>
+            <a href="/Landings" class="back-link">← Volver a mis landings</a>
+        </header>
+        
+        <main class="main-content create-page">
+            <form method="post" class="create-form">
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="alert alert-error">
+                        @Model.ErrorMessage
+                    </div>
+                }
+                
+                <!-- Nombre de la landing -->
+                <div class="form-section">
+                    <h2>📝 Información básica</h2>
+                    <div class="form-group">
+                        <label for="Name">Nombre de la landing</label>
+                        <input type="text" id="Name" asp-for="Input.Name" required class="form-control" 
+                               placeholder="Ej: Mi Tienda de Miel" />
+                    </div>
+                </div>
+                
+                <!-- Selección de Preset -->
+                <div class="form-section">
+                    <h2>🎨 Tipo de Landing</h2>
+                    <p class="section-description">Elige el tipo de landing que mejor se adapte a tu proyecto</p>
+                    
+                    <div class="preset-options">
+                        <label class="preset-card">
+                            <input type="radio" name="Input.PresetType" value="MobileApp" asp-for="Input.PresetType" />
+                            <div class="preset-content">
+                                <span class="preset-icon">📱</span>
+                                <h3>Mobile App</h3>
+                                <p>Ideal para promocionar aplicaciones móviles. Incluye secciones de hero, features y descarga.</p>
+                            </div>
+                        </label>
+                        
+                        <label class="preset-card">
+                            <input type="radio" name="Input.PresetType" value="Pyme" asp-for="Input.PresetType" />
+                            <div class="preset-content">
+                                <span class="preset-icon">🏪</span>
+                                <h3>Pyme / Negocio</h3>
+                                <p>Perfecta para tiendas y negocios locales. Incluye productos, información y contacto.</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Selección de Estilo -->
+                <div class="form-section">
+                    <h2>🎭 Estilo Visual</h2>
+                    <p class="section-description">Cada estilo tiene versión día y noche</p>
+                    
+                    <div id="mobile-styles" class="style-options">
+                        <h4>Estilos para Mobile App:</h4>
+                        <label class="style-option">
+                            <input type="radio" name="Input.StyleType" value="SilverRhodium" />
+                            <span class="style-preview silver"></span>
+                            <span class="style-name">🥈 Silver / Rhodium</span>
+                        </label>
+                        <label class="style-option">
+                            <input type="radio" name="Input.StyleType" value="ModernoSimple" />
+                            <span class="style-preview moderno"></span>
+                            <span class="style-name">🎯 Moderno Simple</span>
+                        </label>
+                        <label class="style-option">
+                            <input type="radio" name="Input.StyleType" value="TecnoTerminal" />
+                            <span class="style-preview tecno"></span>
+                            <span class="style-name">💻 Tecno Terminal</span>
+                        </label>
+                    </div>
+                    
+                    <div id="pyme-styles" class="style-options" style="display:none;">
+                        <h4>Estilos para Pyme:</h4>
+                        <label class="style-option">
+                            <input type="radio" name="Input.StyleType" value="Miel" />
+                            <span class="style-preview miel"></span>
+                            <span class="style-name">🍯 Miel</span>
+                        </label>
+                        <label class="style-option">
+                            <input type="radio" name="Input.StyleType" value="Chocolate" />
+                            <span class="style-preview chocolate"></span>
+                            <span class="style-name">🍫 Chocolate</span>
+                        </label>
+                        <label class="style-option">
+                            <input type="radio" name="Input.StyleType" value="Caramelo" />
+                            <span class="style-preview caramelo"></span>
+                            <span class="style-name">🍬 Caramelo</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Modo de tema -->
+                <div class="form-section">
+                    <h2>🌓 Modo de Tema</h2>
+                    <div class="form-group">
+                        <select asp-for="Input.ThemeMode" class="form-control">
+                            <option value="Toggle">Toggle (usuario puede cambiar)</option>
+                            <option value="DayOnly">Solo modo día</option>
+                            <option value="NightOnly">Solo modo noche</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success btn-lg">Crear Landing</button>
+                    <a href="/Landings" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </main>
+    </div>
+    
+    <script>
+        // Cambiar estilos según el preset seleccionado
+        document.querySelectorAll('input[name="Input.PresetType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const mobileStyles = document.getElementById('mobile-styles');
+                const pymeStyles = document.getElementById('pyme-styles');
+                
+                if (this.value === 'MobileApp') {
+                    mobileStyles.style.display = 'block';
+                    pymeStyles.style.display = 'none';
+                    // Seleccionar primer estilo por defecto
+                    mobileStyles.querySelector('input[type="radio"]').checked = true;
+                } else {
+                    mobileStyles.style.display = 'none';
+                    pymeStyles.style.display = 'block';
+                    pymeStyles.querySelector('input[type="radio"]').checked = true;
+                }
+            });
+        });
+        
+        // Inicializar
+        const checkedPreset = document.querySelector('input[name="Input.PresetType"]:checked');
+        if (checkedPreset) {
+            checkedPreset.dispatchEvent(new Event('change'));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+/* Landings List Styles */
+
+.landings-page {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+}
+
+.landings-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}
+
+/* Landings Grid */
+.landings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.landing-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.landing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+.landing-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.landing-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.style-info,
+.date-info {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.landing-card-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+/* Badges */
+.preset-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.preset-badge.mobileapp {
+    background: #DBEAFE;
+    color: #1E40AF;
+}
+
+.preset-badge.pyme {
+    background: #D1FAE5;
+    color: #065F46;
+}
+
+.status-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.published {
+    background: #10B981;
+    color: white;
+}
+
+.status-badge.draft {
+    background: #F3F4F6;
+    color: #6B7280;
+}
+
+/* Small buttons */
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h2 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .landings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-card-actions {
+        flex-direction: column;
+    }
+
+    .landing-card-actions .btn {
+        width: 100%;
+    }
+}

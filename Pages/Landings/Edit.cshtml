@@ -1,0 +1,117 @@
+@page "{id:int}"
+@model LandingMakerBack.Pages.Landings.EditModel
+@{
+    ViewData["Title"] = $"Editar: {Model.Landing?.Name}";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Landing Maker</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/edit.css" />
+</head>
+<body>
+    <div class="container edit-container">
+        <header class="edit-header">
+            <div class="header-left">
+                <a href="/Landings" class="back-link">← Volver</a>
+                <h1>✏️ @Model.Landing?.Name</h1>
+            </div>
+            <div class="header-right">
+                <span class="preset-badge @Model.Landing?.PresetType.ToString().ToLower()">
+                    @(Model.Landing?.PresetType.ToString() == "MobileApp" ? "📱 Mobile App" : "🏪 Pyme")
+                </span>
+                <span class="style-badge">@Model.Landing?.StyleType</span>
+            </div>
+        </header>
+        
+        <main class="edit-main">
+            @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+            {
+                <div class="alert alert-success">
+                    ✅ @Model.SuccessMessage
+                </div>
+            }
+            
+            <form method="post" class="edit-form">
+                <input type="hidden" asp-for="Landing.Id" />
+                
+                <!-- Información General -->
+                <div class="edit-section">
+                    <h2>📝 Información General</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="Name">Nombre de la landing</label>
+                            <input type="text" id="Name" asp-for="Landing.Name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="ThemeMode">Modo de tema</label>
+                            <select asp-for="Landing.ThemeMode" class="form-control">
+                                <option value="Toggle">Toggle (usuario puede cambiar)</option>
+                                <option value="DayOnly">Solo modo día</option>
+                                <option value="NightOnly">Solo modo noche</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Secciones -->
+                <div class="edit-section">
+                    <h2>📑 Contenido de las Secciones</h2>
+                    <p class="section-description">Edita el contenido JSON de cada sección</p>
+                    
+                    @if (Model.Sections != null)
+                    {
+                        @for (int i = 0; i < Model.Sections.Count; i++)
+                        {
+                            <div class="section-editor">
+                                <div class="section-header">
+                                    <span class="section-type">@Model.Sections[i].SectionType.ToUpper()</span>
+                                    <span class="section-order">Orden: @Model.Sections[i].Order</span>
+                                </div>
+                                <input type="hidden" name="Sections[@i].Id" value="@Model.Sections[i].Id" />
+                                <input type="hidden" name="Sections[@i].SectionType" value="@Model.Sections[i].SectionType" />
+                                <input type="hidden" name="Sections[@i].Order" value="@Model.Sections[i].Order" />
+                                <textarea 
+                                    name="Sections[@i].ConfigJson" 
+                                    class="form-control config-editor"
+                                    rows="8"
+                                >@Model.Sections[i].ConfigJson</textarea>
+                            </div>
+                        }
+                    }
+                </div>
+                
+                <!-- Publicación -->
+                <div class="edit-section publish-section">
+                    <h2>🚀 Publicación</h2>
+                    <div class="publish-status">
+                        <label class="checkbox-label">
+                            <input type="checkbox" asp-for="Landing.IsPublished" />
+                            <span>Landing publicada</span>
+                        </label>
+                        <p class="publish-hint">
+                            @if (Model.Landing?.IsPublished == true)
+                            {
+                                <span class="status published">✅ Visible en: <a href="http://localhost:5173/?id=@Model.Landing.Id" target="_blank">localhost:5173/?id=@Model.Landing.Id</a></span>
+                            }
+                            else
+                            {
+                                <span class="status draft">⚠️ Esta landing no es visible públicamente</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-lg">💾 Guardar Cambios</button>
+                    <a href="http://localhost:5173/?id=@Model.Landing?.Id" target="_blank" class="btn btn-secondary">👁️ Vista Previa</a>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
